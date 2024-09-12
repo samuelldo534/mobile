@@ -42,6 +42,16 @@ export default function TabLayout() {
         
         }}
       />
+       <Tabs.Screen
+        name="comer"
+        options={{
+          title: 'COMER',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'heart' : 'heart'} color={color} />
+          ),
+        
+        }}
+      />
       
     </Tabs>
   );

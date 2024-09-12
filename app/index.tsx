@@ -24,7 +24,7 @@ const index = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>TAMAGOCHI</Text>
-            <Button title="INICIAR" onPress={() => router.push("/(tabs)")}></Button>
+            <Button title="INICIAR" onPress={() => router.push("/cadastro")}></Button>
         </View>
     );
 }

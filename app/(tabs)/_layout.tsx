@@ -19,7 +19,7 @@ export default function TabLayout() {
         options={{
           title: 'INÍCIO',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'brush' : 'brush-outline'} color={color} />
+            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
           ),
         }}
       />

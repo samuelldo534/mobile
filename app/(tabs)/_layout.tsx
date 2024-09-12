@@ -36,6 +36,9 @@ export default function TabLayout() {
         name="brincar"
         options={{
           title: 'brincar',
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? 'happy' : 'happy'} color={color} />
+          ),
         
         }}
       />

@@ -1,5 +1,6 @@
 import { Link } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
+import { useRouter } from 'expo-router';
 
 
 const styles = StyleSheet.create({
@@ -8,18 +9,22 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         flex:1,
-        backgroundColor:'#06DC1C'
+        backgroundColor:'#E0563A',
+        
 
     },
     text:{
-        color: '#ffffF'
+        marginBottom:100,
+        color: '#ffffF',
+        fontSize:50
     }
     })
 const index = () => {
+    const router = useRouter();
     return (
         <View style={styles.container}>
             <Text style={styles.text}>TAMAGOCHI</Text>
-            <Link href={"/(tabs)"} style={styles.text}>CONTINUAR</Link>
+            <Button title="INICIAR" onPress={() => router.push("/(tabs)")}></Button>
         </View>
     );
 }

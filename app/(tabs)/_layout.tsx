@@ -17,7 +17,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'EDITAR',
+          title: 'INÍCIO',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'brush' : 'brush-outline'} color={color} />
           ),
@@ -26,7 +26,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="dormir"
         options={{
-          title: 'dormir',
+          title: 'DORMIR',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'flash' : 'flash-outline'} color={color} />
           ),
@@ -35,7 +35,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="brincar"
         options={{
-          title: 'brincar',
+          title: 'BRINCAR',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'happy' : 'happy'} color={color} />
           ),

@@ -1,6 +1,13 @@
-import { Button, StyleSheet, TextInput, View, Alert } from "react-native";
+import React, { useState } from 'react';
+import { Button, StyleSheet, TextInput, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useState } from "react";
+
+// Imagens disponíveis para seleção
+const images = [
+  { id: 1, uri: require('./assets/cat (1).png') }, // Altere para o caminho correto das suas imagens
+  { id: 2, uri: require('./assets/dog.png') }, // Altere para o caminho correto das suas imagens
+  
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -18,19 +25,41 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     width: '80%',
   },
+  imageContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
+    borderWidth: 2,
+    borderColor: 'transparent',
+  },
+  selectedImage: {
+    borderColor: 'blue',
+  },
 });
 
 const Cadastro = () => {
   const [inputValue, setInputValue] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
   const router = useRouter();
 
   const handleContinue = () => {
     if (inputValue.trim() === "") {
-      // Exibe uma mensagem de alerta se o nome estiver vazio
       Alert.alert("Erro", "Por favor, insira o nome do Tamagotchi.");
+    } else if (!selectedImage) {
+      Alert.alert("Erro", "Por favor, selecione uma imagem.");
     } else {
-      // Navega para a próxima tela
-      router.push("/(tabs)");
+      router.push({
+        pathname: '/(tabs)',
+        params: {
+          name: inputValue,
+          image: selectedImage,
+        },
+      });
     }
   };
 
@@ -38,13 +67,32 @@ const Cadastro = () => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Digite o nome do tamagotchi"
+        placeholder="Digite o nome do Tamagotchi"
         value={inputValue}
         onChangeText={text => setInputValue(text)}
       />
+      
+      <View style={styles.imageContainer}>
+        {images.map(image => (
+          <TouchableOpacity
+            key={image.id}
+            onPress={() => setSelectedImage(image.uri)}
+          >
+            <Image
+              source={image.uri}
+              style={[
+                styles.image,
+                selectedImage === image.uri && styles.selectedImage,
+              ]}
+              resizeMode="cover"
+            />
+          </TouchableOpacity>
+        ))}
+      </View>
+      
       <Button title="CONTINUAR" onPress={handleContinue} />
     </View>
   );
-}
+};
 
 export default Cadastro;

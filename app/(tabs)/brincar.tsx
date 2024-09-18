@@ -33,17 +33,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5F5F5', // Cor de fundo clara
+    backgroundColor: '#E0BF3A', 
     padding: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 40,
-    color: '#333', // Cor do texto
+    color: '#333', 
   },
   buttonContainer: {
-    marginBottom: 20, // Espaçamento entre os botões
-    width: '80%', // Largura dos botões
+    marginBottom: 20, 
+    width: '80%', 
   },
 });

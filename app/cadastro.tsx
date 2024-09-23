@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View, Alert, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+import { tamaServ } from './database/tamaServ';
 
 // Imagens disponíveis para seleção
 const images = [
@@ -42,22 +43,36 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
+
+
+
+
 const Cadastro = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [nome, setNome] = useState("");
+  const [imagem, setImagem] = useState(null);
   const router = useRouter();
+  const{createTama}=tamaServ();
+
+  const create = ()=>{
+    onSave(nome,imagem);
+    setNome("");
+    setImagem("");
+    onclose();
+  }
 
   const handleContinue = () => {
-    if (inputValue.trim() === "") {
+    if (nome.trim() === "") {
       Alert.alert("Erro", "Por favor, insira o nome do Tamagotchi.");
-    } else if (!selectedImage) {
+    } else if (!imagem) {
       Alert.alert("Erro", "Por favor, selecione uma imagem.");
     } else {
       router.push({
         pathname: '/(tabs)',
         params: {
-          name: inputValue,
-          image: selectedImage,
+          name: nome,
+          image: imagem,
         },
       });
     }
@@ -68,21 +83,21 @@ const Cadastro = () => {
       <TextInput
         style={styles.input}
         placeholder="Digite o nome do Tamagotchi"
-        value={inputValue}
-        onChangeText={text => setInputValue(text)}
+        value={nome}
+        onChangeText={text => setNome(text)}
       />
       
       <View style={styles.imageContainer}>
         {images.map(image => (
           <TouchableOpacity
             key={image.id}
-            onPress={() => setSelectedImage(image.uri)}
+            onPress={() => setImagem(image.uri)}
           >
             <Image
               source={image.uri}
               style={[
                 styles.image,
-                selectedImage === image.uri && styles.selectedImage,
+                imagem === image.uri && styles.selectedImage,
               ]}
               resizeMode="cover"
             />

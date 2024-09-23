@@ -1,6 +1,7 @@
 import { useSQLiteContext } from "expo-sqlite"
 
 export function tamaServ(){
+<<<<<<< Updated upstream
     const database = useSQLiteContext();
     async function createTama({nome , imagem} :{nome :string, imagem : string} ){
 
@@ -20,4 +21,15 @@ export function tamaServ(){
     }
 
     return {createTama}
+=======
+const database = useSQLiteContext()
+
+function createTama({nome,imagem}:{nome:string, imagem:string})
+try {
+    
+} catch (error) {
+    
+}
+    return {}
+>>>>>>> Stashed changes
 }

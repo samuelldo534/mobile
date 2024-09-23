@@ -6,7 +6,11 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+<<<<<<< Updated upstream
 import { SQLiteProvider } from 'expo-sqlite';
+=======
+import { SQLiteDatabase, SQLiteProvider } from 'expo-sqlite';
+>>>>>>> Stashed changes
 import { initDb } from './database/initDb';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -29,8 +33,13 @@ export default function RootLayout() {
   }
 
   return (
+<<<<<<< Updated upstream
     <SQLiteProvider databaseName="InitDb.db" onInit={initDb}>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+=======
+    <SQLiteProvider databaseName='data.db' onInit={initDb}>
+    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+>>>>>>> Stashed changes
       <Stack>
         <Stack.Screen name="index"/>
         <Stack.Screen name="cadastro"/>
@@ -39,7 +48,10 @@ export default function RootLayout() {
       </Stack>
     </ThemeProvider>
     </SQLiteProvider>
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
   );
 }
 

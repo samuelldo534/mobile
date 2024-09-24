@@ -1,12 +1,15 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-
+import { TouchableOpacity } from 'react-native'; // Adicione esta linha
+import { useRouter } from 'expo-router'; // Importar useRouter
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const router = useRouter(); // Obtenha o router
+
 
   return (
     <Tabs
@@ -23,36 +26,6 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="dormir"
-        options={{
-          title: 'DORMIR',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'flash' : 'flash-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="brincar"
-        options={{
-          title: 'BRINCAR',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'happy' : 'happy'} color={color} />
-          ),
-        
-        }}
-      />
-       <Tabs.Screen
-        name="comer"
-        options={{
-          title: 'COMER',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'heart' : 'heart'} color={color} />
-          ),
-        
-        }}
-      />
-      
     </Tabs>
   );
 }

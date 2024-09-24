@@ -4,9 +4,8 @@ import { useRouter } from 'expo-router';
 
 // Imagens disponíveis para seleção
 const images = [
-  { id: 1, uri: require('./assets/cat (1).png') }, // Altere para o caminho correto das suas imagens
-  { id: 2, uri: require('./assets/dog.png') }, // Altere para o caminho correto das suas imagens
-  
+  { id: 1, uri: require('./assets/cat (1).png') },
+  { id: 2, uri: require('./assets/dog.png') },
 ];
 
 const styles = StyleSheet.create({
@@ -54,15 +53,15 @@ const Cadastro = () => {
       Alert.alert("Erro", "Por favor, selecione uma imagem.");
     } else {
       router.push({
-        pathname: '/(tabs)',
+        pathname: '/(tabs)', 
         params: {
           name: inputValue,
-          image: selectedImage,
+          image: selectedImage, // Certifique-se de que isso é o objeto correto
         },
       });
     }
   };
-
+  
   return (
     <View style={styles.container}>
       <TextInput
@@ -80,10 +79,7 @@ const Cadastro = () => {
           >
             <Image
               source={image.uri}
-              style={[
-                styles.image,
-                selectedImage === image.uri && styles.selectedImage,
-              ]}
+              style={[styles.image, selectedImage === image.uri && styles.selectedImage]}
               resizeMode="cover"
             />
           </TouchableOpacity>

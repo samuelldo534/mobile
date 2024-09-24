@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions, Animated, TouchableOpacity } from '
 import { Accelerometer } from 'expo-sensors';
 
 const { width, height } = Dimensions.get('window');
-const BALL_SIZE = 30; // Tamanho da bolinha
+const BALL_SIZE = 20; // Tamanho da bolinha
 const MAZE_SIZE = 10; // Tamanho da matriz do labirinto
 const CELL_SIZE = (Math.min(width, height) - 80) / MAZE_SIZE; // Tamanho das células do labirinto
 
@@ -66,7 +66,7 @@ const MazeRunner = () => {
   const ballRef = useRef(new Animated.ValueXY(getValidStartPosition())).current;
 
   useEffect(() => {
-    Accelerometer.setUpdateInterval(50); // Atualiza a cada 50ms
+    Accelerometer.setUpdateInterval(10);
     const subscription = Accelerometer.addListener(accelerometerData => {
       if (start && !gameOver) {
         const { x, y } = accelerometerData;

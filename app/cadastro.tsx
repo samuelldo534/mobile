@@ -51,18 +51,20 @@ const styles = StyleSheet.create({
 
 const Cadastro = () => {
   const [nome, setNome] = useState("");
-  const [imagem, setImagem] = useState(null);
+  const [imagem, setImagem] = useState("");
   const router = useRouter();
   const{createTama}=tamaServ();
 
-  const create = ()=>{
-    onSave(nome,imagem);
-    setNome("");
-    setImagem("");
-    onclose();
+  const create = async ()=>{
+  try{
+   
+    const res=await createTama({nome:nome,imagem:imagem})
+  }catch(error){}
+
   }
 
   const handleContinue = () => {
+
     if (nome.trim() === "") {
       Alert.alert("Erro", "Por favor, insira o nome do Tamagotchi.");
     } else if (!imagem) {
@@ -77,6 +79,13 @@ const Cadastro = () => {
       });
     }
   };
+
+
+
+  const continuar = () =>{
+    handleContinue();
+    create();
+  }
 
   return (
     <View style={styles.container}>
@@ -105,7 +114,7 @@ const Cadastro = () => {
         ))}
       </View>
       
-      <Button title="CONTINUAR" onPress={handleContinue} />
+      <Button title="CONTINUAR" onPress={continuar} />
     </View>
   );
 };

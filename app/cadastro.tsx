@@ -3,8 +3,14 @@ import { Button, StyleSheet, TextInput, View, Alert, Image, TouchableOpacity } f
 import { useRouter } from 'expo-router';
 import { tamaServ } from './database/tamaServ';
 
-// Imagens disponíveis para seleção
-const images = [
+
+interface ImageType {
+  id: number;
+  uri: any; 
+}
+
+
+const images: ImageType[] = [
   { id: 1, uri: require('./assets/cat (1).png') },
   { id: 2, uri: require('./assets/dog.png') },
 ];
@@ -42,38 +48,31 @@ const styles = StyleSheet.create({
   },
 });
 
-
-
-
-
-
-
-const Cadastro = () => {
-  const [nome, setNome] = useState("");
-  const [imagem, setImagem] = useState("");
+const Cadastro: React.FC = () => {
+  const [nome, setNome] = useState<string>("");
+  const [imagem, setImagem] = useState<any>(null); 
   const router = useRouter();
-  const{createTama}=tamaServ();
+  const { createTama } = tamaServ();
 
-  const create = async ()=>{
-  try{
-   
-    const res=await createTama({nome:nome,imagem:imagem})
-  }catch(error){}
-
-  }
+  const create = async () => {
+    try {
+      await createTama({ nome: nome, imagem: imagem });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleContinue = () => {
-
     if (nome.trim() === "") {
       Alert.alert("Erro", "Por favor, insira o nome do Tamagotchi.");
     } else if (!imagem) {
       Alert.alert("Erro", "Por favor, selecione uma imagem.");
     } else {
       router.push({
-        pathname: '/(tabs)', 
+        pathname: '/(tabs)',
         params: {
-          name: inputValue,
-          image: selectedImage,
+          name: nome,
+          image: imagem,
         },
       });
     }
@@ -89,16 +88,16 @@ const Cadastro = () => {
       />
       
       <View style={styles.imageContainer}>
-        {images.map(image => (
+        {images.map(imageItem => (
           <TouchableOpacity
-            key={image.id}
-            onPress={() => setImagem(image.uri)}
+            key={imageItem.id}
+            onPress={() => setImagem(imageItem.uri)}
           >
             <Image
-              source={image.uri}
+              source={imageItem.uri}
               style={[
                 styles.image,
-                selectedImage === image.uri && styles.selectedImage,
+                imagem === imageItem.uri && styles.selectedImage, // Usando imagem para a seleção
               ]}
               resizeMode="cover"
             />
@@ -106,7 +105,7 @@ const Cadastro = () => {
         ))}
       </View>
       
-      <Button title="CONTINUAR" onPress={continuar} />
+      <Button title="CONTINUAR" onPress={handleContinue} />
     </View>
   );
 };

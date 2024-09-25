@@ -119,6 +119,18 @@ const InicioScreen: React.FC = () => {
       if (sleepInterval) clearInterval(sleepInterval);
       if (awakeInterval) clearInterval(awakeInterval);
     };
+
+
+    useEffect(() => {
+      const temporizador = setInterval(() => {
+        setHunger(prev => Math.max(prev - 1, 0));
+        setSleep(prev => Math.max(prev - 1, 0));
+        setFun(prev => Math.max(prev - 1, 0));
+      }, 1000);
+    
+    
+      return () => clearInterval(temporizador);
+    }, []);
   }, [isSleeping, isDead]);
 
   const handleNewTamagotchi = () => {
